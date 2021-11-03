@@ -15,10 +15,16 @@ const randomItem = require('./random-item')
 // List entry route
 app.get('/api/guild', (req, res) => {
   let randomCharacter = null
-  
+  let filteredPoison = null
+
+  //todo: add support for filter = poisoned and return all guild members that have poisoned set to true
   if (req.query.filter === 'random'){
     randomCharacter = randomItem(guild)
     res.send(randomCharacter)
+
+  }else if(req.query.filter === 'poisoned'){
+    filteredPoison = randomItem()
+    
   }else if (typeof guild !== 'undefined' && Array.isArray(guild)) {
     // Variable is an array!
     res.send(guild)
